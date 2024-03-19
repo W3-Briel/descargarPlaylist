@@ -1,7 +1,5 @@
 import pytube,pydub, re
 import os
-### agregar expresiones regulares para los titulos
-## arreglar la expresion regular, no tiene que aceptar & ni -
 
 class Video():
     def __init__(self,url):
