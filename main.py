@@ -1,7 +1,7 @@
 import class_video as c
 
 ## ahi adentro mete el link de la playlist, tiene que estar en publica o en no listada.
-miPlaylist = c.Cargar_playlist("https://youtube.com/playlist?list=PLJHs0bVpt5Y78dFM9XlRgbAaxbDR73wTe&si=a2pri8BCFZ-5dqmG")
+miPlaylist = c.Cargar_playlist("https://youtube.com/playlist?list=PLJHs0bVpt5Y7IS2mCjhChTjVic3vAWxrW&si=hiqtOIoe-yG8YMs5")
 miPlaylist.preparar_y_descargar_todo()
 
 opcion = input("deseas convertir todo a mp3??-> (si) (no): ").lower()

@@ -13,7 +13,7 @@ class Video():
         patron = re.compile("[A-Za-z/()\ñ\u00E0-\u00FC ]+")
         self.title = "".join(re.findall(patron,self.title))
         self.title = "".join(self.title.split())
-        
+
     def get_minutes(self):
         minutes = self.obj.length/60
         return float(f"{minutes:.3}")
@@ -25,6 +25,12 @@ class Video():
         return {"titulo": self.get_title(),
                 "minutos": self.get_minutes(),
                 "tamaño_audio_mb": self.set_audio().filesize_mb}
+    def get_metadata(self):
+        return {
+            "title": self.get_title(),
+            "artist": self.obj.author,
+            "date": self.obj.publish_date
+            }
 
     def set_audio(self):
         if self.audio == None:
@@ -91,7 +97,7 @@ class Convertir():
                 if os.path.exists(archivo.path):
                     audio_segment = pydub.AudioSegment.from_file(archivo.path, format="mp4")
                     mp3_path = os.path.join("./descargas_mp3", f"audio_{archivo.get_title()}.mp3")
-                    audio_segment.export(mp3_path, format="mp3")
+                    audio_segment.export(mp3_path, format="mp3", tags = archivo.get_metadata())
 
                     # Elimina el archivo de video original
                     os.remove(archivo.path)
