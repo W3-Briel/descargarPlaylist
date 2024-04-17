@@ -1,7 +1,5 @@
 import pytube,pydub, re
-import os
-### agregar expresiones regulares para los titulos
-## arreglar la expresion regular, no tiene que aceptar & ni -
+import os, zipfile
 
 class Video():
     def __init__(self,url):
@@ -87,6 +85,10 @@ class Cargar_playlist():
 class Convertir():
     def __init__(self,lista_Playlist):
         self.list_obj = lista_Playlist
+        self.path = "./descargas_mp3"
+
+    def get_path(self):
+        return self.path
 
     def convertir_todo_a_mp3(self):
         for archivo in self.list_obj:
@@ -96,8 +98,8 @@ class Convertir():
 
                 if os.path.exists(archivo.path):
                     audio_segment = pydub.AudioSegment.from_file(archivo.path, format="mp4")
-                    mp3_path = os.path.join("./descargas_mp3", f"audio_{archivo.get_title()}.mp3")
-                    audio_segment.export(mp3_path, format="mp3", tags = archivo.get_metadata())
+                    mp3_path = os.path.join(self.get_path(), f"audio_{archivo.get_title()}.mp3")
+                    audio_segment.export(mp3_path, format="mp3", tags=archivo.get_metadata())
 
                     # Elimina el archivo de video original
                     os.remove(archivo.path)
@@ -107,3 +109,11 @@ class Convertir():
                     print(f"Error: El archivo no se encontró: {archivo.path}")
             except Exception as e:
                 print(f"Error al procesar {archivo.get_title()}: {e}")
+
+class Compresor():
+    def zip (self,path):
+        with zipfile.ZipFile("playlist.zip","w") as z:
+            for folder, subfolders, cancionMP3 in os.walk(path):
+                for i in cancionMP3:
+                    if i.endswith(".mp3"):
+                        z.write(os.path.join(path,i), compress_type=zipfile.ZIP_DEFLATED)
