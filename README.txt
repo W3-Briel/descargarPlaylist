@@ -10,5 +10,5 @@ pip install pydub --upgrade
 pip install pytube --upgrade
 
 
-para descargar una playlist, debe editar la variable miPlaylist y editar la URL.
+para descargar una playlist, debe editar la variable miPlaylist para utilizar la URL de tu playlist.
 Es importante que la playlist no sea privada.
