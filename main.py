@@ -1,10 +1,14 @@
 import class_video as c
 
-## ahi adentro mete el link de la playlist, tiene que estar en publica o en no listada.
+## al ejecutar el codigo, la consola se queda esperando un link de una playlist publica o no listada, de youtube para poder descargar sus
+## videos mp3 de la lista.
 
-link  = input("Ingresa el link de la playlist.\nTiene que estar Publica o No listada; ")
+while True:
+    try:
+        link  = input("Ingresa el link de la playlist.\nTiene que estar Publica o No listada; ")
+        miPlaylist = c.Cargar_playlist(link); break
+    except: print("ocurrio un error - intenta poner un link valido"); continue
 
-miPlaylist = c.Cargar_playlist(link)
 miPlaylist.preparar_y_descargar_todo()
 
 print("se convertira todo a mp3\n")
