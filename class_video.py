@@ -1,9 +1,5 @@
 import pytube,pydub, re
-<<<<<<< HEAD
-import os
-=======
 import os, zipfile
->>>>>>> feacture/zip
 
 class Video():
     def __init__(self,url):
@@ -113,8 +109,6 @@ class Convertir():
                     print(f"Error: El archivo no se encontró: {archivo.path}")
             except Exception as e:
                 print(f"Error al procesar {archivo.get_title()}: {e}")
-<<<<<<< HEAD
-=======
 
 class Compresor():
     def zip (self,path):
@@ -123,4 +117,3 @@ class Compresor():
                 for i in cancionMP3:
                     if i.endswith(".mp3"):
                         z.write(os.path.join(path,i), compress_type=zipfile.ZIP_DEFLATED)
->>>>>>> feacture/zip
