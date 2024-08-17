@@ -5,4 +5,8 @@
 2) sin anuncios.
 3) contiene metadata.
 4) comprime directamente la playlist a zip.
-5) dentro de poco con interfaz.
+## a futuro
+5) distingue con un link = video o playlist
+6) funciona desde el cmd de manera rapida
+7) hilos
+8) interfaz.
