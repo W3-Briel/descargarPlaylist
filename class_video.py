@@ -44,8 +44,18 @@ class Video():
 
 class Cargar_playlist():
     def __init__(self,url: str):
-        self.lista = pytube.Playlist(url).video_urls
-        self.videos_obj = []
+
+        self.isPlaylist = True
+        self.aux = ["?list=","&list="]
+
+        if (self.aux[0] in url) or (self.aux[1] in url):
+            self.lista = pytube.Playlist(url).video_urls
+            self.videos_obj = []
+
+        else:
+            self.isPlaylist = False
+            self.videos_obj = [Video(url)]
+
 
     def guardar_videos(self) -> None:
         largo = len(self.lista)
@@ -67,7 +77,9 @@ class Cargar_playlist():
             video.descargar()
 
     def setup(self) -> None:
-        self.guardar_videos()
+        if self.isPlaylist:
+            self.guardar_videos()
+
         self.obtener_audios()
         self.descargar_todos()
 

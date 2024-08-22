@@ -5,10 +5,10 @@ import class_video as c
 
 while True:
     link  = input("Ingresa el link de la playlist.\nTiene que estar Publica o No listada; ")
-    try:
-        miPlaylist = c.Cargar_playlist(link)
-        miPlaylist.setup(); break
-    except: print("ocurrio un error - intenta poner un link valido"); continue
+    # try:
+    miPlaylist = c.Cargar_playlist(link)
+    miPlaylist.setup(); break
+    # except: print("ocurrio un error - intenta poner un link valido"); continue
 
 convertir = c.Convertir(miPlaylist.videos_obj)
 convertir.todo_mp3() ## deberia trabajar con hilos.
